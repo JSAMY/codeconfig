@@ -1,0 +1,6 @@
+<div *ngFor="let item of menus;">
+  <div [class.main]="!item.parentId" [class.active] = "item.active">
+      <a routerLink="/{{item.path}}" (click)="changeMenuStatus(item.id)">{{item.caption}}</a>
+  </div>
+  <app-menu-builder *ngIf="item.hasChild()" [menus]="item.child"></app-menu-builder>
+</div>
