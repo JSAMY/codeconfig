@@ -17,4 +17,17 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  private setMenuStatus(menu: IMenu, id: number) {
+    menu.active = (menu.id === id);
+    if (menu.hasChild()) {
+      menu.child.forEach(child => this.setMenuStatus(child, id));
+    }
+  }
+
+  updateMenuStatus(id: number) {
+    this.menus.forEach(menu => {
+       this.setMenuStatus(menu, id);
+     });
+    }
 }

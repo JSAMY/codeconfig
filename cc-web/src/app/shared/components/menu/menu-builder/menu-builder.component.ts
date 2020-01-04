@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IMenu } from 'src/app/shared/models/menu.model';
 
 @Component({
@@ -8,24 +8,23 @@ import { IMenu } from 'src/app/shared/models/menu.model';
 })
 export class MenuBuilderComponent implements OnInit {
   @Input() menus: IMenu[];
+  @Output() selectEvents: EventEmitter<number>;
 
-  constructor() { }
-  ngOnInit() { }
-
-  private setMenuStatus(menu: IMenu, id: number) {
-    if (menu.id === id) {
-      menu.active = true;
-    } else {
-      menu.active = false;
-      if (menu.hasChild()) {
-        menu.child.forEach(child => this.setMenuStatus(child, id));
-      }
-    }
+  constructor() {
+    this.selectEvents = new EventEmitter<number>();
   }
 
-  changeMenuStatus(id: number) {
-    this.menus.forEach(menu => {
-       this.setMenuStatus(menu, id);
-     });
+  ngOnInit() { }
+
+    updateMenuStatus(id: number) {
+      this.selectEvents.emit(id);
+    }
+
+    updateChildMenuStatus(id: number) {
+      this.updateMenuStatus(id);
+    }
+
+    updateParentMenuStatus(id: number) {
+      this.updateMenuStatus(id);
     }
 }

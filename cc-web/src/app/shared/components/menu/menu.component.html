@@ -1,1 +1,3 @@
-<app-menu-builder  [menus]="menus"></app-menu-builder>
+<div class="menu-container">
+  <app-menu-builder  [menus]="menus" (selectEvents)="updateMenuStatus($event)"></app-menu-builder>
+</div>
