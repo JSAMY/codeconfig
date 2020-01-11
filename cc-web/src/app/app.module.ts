@@ -16,8 +16,8 @@ import { MenuBuilderComponent } from './shared/components/menu/menu-builder/menu
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

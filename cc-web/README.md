@@ -31,3 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 https://medium.com/@motcowley/angular-folder-structure-d1809be95542
 
 ng g component plainsight/yourchildcompname
+
+#recursive
+https://www.bennadel.com/blog/3513-playing-with-recursive-components-in-angular-6-1-10.htm
+https://stackoverflow.com/questions/38486941/eventemitter-and-recursion

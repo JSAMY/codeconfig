@@ -1,0 +1,10 @@
+<form   [formGroup]="fg">
+      <div *ngFor="let control of controls">
+          <mat-form-field>
+            <input matInput
+            [formControlName]="control.name"
+            placeholder="{{control.placeHolder}}"
+            value="Test">
+          </mat-form-field>
+    </div>
+  </form>
