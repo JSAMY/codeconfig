@@ -29,6 +29,10 @@ export enum Allow {
   Only_0_9_and_Many_Digits
 }
 
+export interface IOption {
+  key: string;
+  value: string;
+}
 
 export interface IBaseControl {
   name: string;
@@ -93,8 +97,10 @@ export class SelectControl extends BaseControl {
   SelectedValue: string;
   SelectedText: string;
   MultiSelect: boolean;
+  options: IOption[] = [];
 
   constructor(name: string,
+              options: IOption[],
               required: boolean,
               placeHolder: string,
               errorMessage: string,
@@ -105,5 +111,6 @@ export class SelectControl extends BaseControl {
                 this.SelectedText = (selectedText) ? selectedText : '';
                 this.SelectedValue = (selectedValue) ? selectedValue : '';
                 this.MultiSelect = multiSelect;
+                this.options = options;
   }
 }

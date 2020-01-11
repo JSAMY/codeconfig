@@ -35,3 +35,7 @@ ng g component plainsight/yourchildcompname
 #recursive
 https://www.bennadel.com/blog/3513-playing-with-recursive-components-in-angular-6-1-10.htm
 https://stackoverflow.com/questions/38486941/eventemitter-and-recursion
+
+
+#enum type check in html
+https://stackoverflow.com/questions/35835984/how-to-use-a-typescript-enum-value-in-an-angular2-ngswitch-statement

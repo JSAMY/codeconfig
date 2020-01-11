@@ -1,10 +1,25 @@
 <form   [formGroup]="fg">
       <div *ngFor="let control of controls">
-          <mat-form-field>
-            <input matInput
-            [formControlName]="control.name"
-            placeholder="{{control.placeHolder}}"
-            value="Test">
-          </mat-form-field>
-    </div>
+
+          <div [ngSwitch]="control.controlType">
+
+                  <mat-form-field *ngSwitchCase="controlType.Input">
+                      <input matInput
+                      [formControlName]="control.name"
+                      placeholder="{{control.placeHolder}}"
+                      value="{{getInputValue(control)}}"  >
+                    </mat-form-field>
+
+
+                    <mat-form-field *ngSwitchCase="controlType.Select">
+                        <mat-label>{{control.placeHolder }} </mat-label>
+                        <mat-select    [formControlName]="control.name">
+                          <mat-option *ngFor="let opt of getSelectOptions(control)" [value]="opt.key">
+                            {{opt.value}}
+                          </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+          </div>
+   </div>
   </form>

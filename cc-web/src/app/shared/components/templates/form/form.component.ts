@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IBaseControl } from 'src/app/shared/models/form.control.model';
+import { IBaseControl, ControlType, InputControl, SelectControl } from 'src/app/shared/models/form.control.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 })
 
 export class FormComponent implements OnInit {
-
+  controlType: typeof  ControlType = ControlType;
   @Input() controls: IBaseControl[] = [];
   @Input() fg: FormGroup;
 
@@ -17,5 +17,15 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
   }
+
+   getInputValue(control: InputControl) {
+      return control.defaultValue;
+   }
+
+   getSelectOptions(control: SelectControl) {
+    return control.options;
+ }
+
+
 
 }
