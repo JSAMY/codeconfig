@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from './app-material.module';
+import { Formservice } from './shared/services/formservice/form.service';
 
 @NgModule({
   exports: [
@@ -14,6 +15,7 @@ import { AppMaterialModule } from './app-material.module';
     AppMaterialModule
   ],
   providers: [
+    Formservice
   ]
 })
 export class FormModule { }

@@ -30,8 +30,8 @@ export enum Allow {
 }
 
 export interface IOption {
-  key: string;
   value: string;
+  text: string;
 }
 
 export interface IBaseControl {

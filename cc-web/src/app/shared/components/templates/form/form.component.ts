@@ -13,9 +13,11 @@ export class FormComponent implements OnInit {
   @Input() controls: IBaseControl[] = [];
   @Input() fg: FormGroup;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+
   }
 
    getInputValue(control: InputControl) {
@@ -26,6 +28,30 @@ export class FormComponent implements OnInit {
     return control.options;
  }
 
+ getMaxLength(control: InputControl) {
+  return control.maxLength;
+ }
 
+ // TO DO : Need to check this validation
+ getMinLength(control: InputControl) {
+  return control.minLength;
+ }
+
+ getControl(control: IBaseControl) {
+  let ctl: IBaseControl;
+  switch (control.controlType) {
+    case ControlType.Input:
+       console.log('input');
+       ctl = (control as InputControl);
+       break;
+    case ControlType.Select:
+          console.log('select');
+          ctl = (control as SelectControl);
+          break;
+  }
+
+  return ctl;
+
+ }
 
 }
