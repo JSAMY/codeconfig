@@ -37,6 +37,10 @@ export class FormComponent implements OnInit {
   return control.minLength;
  }
 
+  isMultiSelect(control: SelectControl) {
+   return control.multiSelect;
+ }
+
  getControl(control: IBaseControl) {
   let ctl: IBaseControl;
   switch (control.controlType) {

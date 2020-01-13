@@ -94,9 +94,9 @@ export class InputControl extends  BaseControl {
 }
 
 export class SelectControl extends BaseControl {
-  SelectedValue: string;
-  SelectedText: string;
-  MultiSelect: boolean;
+  selectedValue: string;
+  selectedText: string;
+  multiSelect: boolean;
   options: IOption[] = [];
 
   constructor(name: string,
@@ -108,9 +108,9 @@ export class SelectControl extends BaseControl {
               selectedText?: string,
               multiSelect?: boolean) {
                 super(name, ControlType.Select, required, placeHolder, errorMessage);
-                this.SelectedText = (selectedText) ? selectedText : '';
-                this.SelectedValue = (selectedValue) ? selectedValue : '';
-                this.MultiSelect = multiSelect;
+                this.selectedValue = (selectedValue) ? selectedValue : '';
+                this.selectedText = (selectedText) ? selectedText : '';
+                this.multiSelect = multiSelect;
                 this.options = options;
   }
 }

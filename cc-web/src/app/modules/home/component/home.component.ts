@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   fg: FormGroup;
   controls: IBaseControl[] = [];
 
-  constructor(private formservice: Formservice) {
+    constructor(private formservice: Formservice) {
 
     const firstName: InputControl = new InputControl('name',
     DataType.Text, 'John', true, 3, 25, 'First Name', 'Name required', Allow.Only_A_Z);
@@ -24,13 +24,24 @@ export class HomeComponent implements OnInit {
     DataType.Text, 'Adaikalasamy', false, 1, 25, 'Surname', 'Surname required', Allow.Only_A_Z);
     this.controls.push(surame);
 
-    const options: IOption[] = [];
-    options.push({value: 'IT_1',  text: 'Computer Hardware'});
-    options.push({value: 'IT_2',  text: 'Computer Software'});
+    const businessOptions: IOption[] = [];
+    businessOptions.push({value: 'IT_1',  text: 'Computer Hardware'});
+    businessOptions.push({value: 'IT_2',  text: 'Computer Software'});
     const businessType: SelectControl = new SelectControl('businessType',
-                          options, true, 'Business', 'Business required', 'IT_2', '', false );
+                        businessOptions, true, 'Business', 'Business required', 'IT_2', '', false );
 
     this.controls.push(businessType);
+
+
+    const options: IOption[] = [];
+    options.push({value: 'ind',  text: 'India'});
+    options.push({value: 'aus',  text: 'Australia'});
+    const region: SelectControl   = new SelectControl('region',
+                          options, true, 'Region', 'Region required', 'ind', '', true);
+
+    this.controls.push(region);
+
+
     this.fg = formservice.getFormGroup(this.controls);
   }
 

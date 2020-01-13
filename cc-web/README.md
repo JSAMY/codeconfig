@@ -39,3 +39,10 @@ https://stackoverflow.com/questions/38486941/eventemitter-and-recursion
 
 #enum type check in html
 https://stackoverflow.com/questions/35835984/how-to-use-a-typescript-enum-value-in-an-angular2-ngswitch-statement
+
+
+#Custom validation
+https://jasonwatmore.com/post/2019/06/14/angular-8-reactive-forms-validation-example
+
+#variable initi in html
+https://stackoverflow.com/questions/38582293/how-to-declare-a-variable-in-a-template-in-angular/43172992
