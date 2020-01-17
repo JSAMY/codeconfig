@@ -38,6 +38,16 @@
                           <mat-checkbox  [checked]="opt.selected"  [value]="opt.value">{{opt.text}}</mat-checkbox>
                       </p>
                     </section>
+
+                    <section  *ngSwitchCase="controlType.RadioButton" >
+                        <label> {{getTitle(control)}} </label>
+                        <mat-radio-group [formControlName]="control.name">
+                            <mat-radio-button [checked]="opt.selected"  *ngFor="let opt of getSelectOptions(control)"
+                             [value]="opt.value">
+                                {{opt.text}}
+                            </mat-radio-button>
+                          </mat-radio-group>
+                      </section>
           </div>
    </div>
   </form>

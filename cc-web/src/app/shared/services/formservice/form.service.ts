@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IBaseControl, InputControl, ControlType, SelectControl, CheckboxControl, IOption } from '../../models/form.control.model';
+import { IBaseControl, InputControl, ControlType, SelectControl, CheckboxControl, IOption, OptionControl } from '../../models/form.control.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable()
@@ -37,8 +37,10 @@ export class Formservice   {
                     } else {
                       group[control.name] = new FormControl(selectControl.multiSelect ? selectedValues : selectedValue);
                     }
-              } else if (control.controlType === ControlType.CheckBox) {
-                const selectControl = (control as CheckboxControl);
+              } else if (control.controlType === ControlType.CheckBox ||
+                control.controlType === ControlType.RadioButton ) {
+
+                const selectControl = (control as OptionControl);
                 let selectedValues: string[] = [];
                 selectedValues = selectControl.options.filter(opt => opt.selected).map(o => o.value);
 
