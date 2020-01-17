@@ -32,6 +32,7 @@ export enum Allow {
 export interface IOption {
   value: string;
   text: string;
+  selected?: boolean;
 }
 
 export interface IBaseControl {
@@ -94,8 +95,7 @@ export class InputControl extends  BaseControl {
 }
 
 export class SelectControl extends BaseControl {
-  selectedValue: string;
-  selectedText: string;
+  selectedValue: string[] = [];
   multiSelect: boolean;
   options: IOption[] = [];
 
@@ -104,13 +104,53 @@ export class SelectControl extends BaseControl {
               required: boolean,
               placeHolder: string,
               errorMessage: string,
-              selectedValue?: string,
-              selectedText?: string,
+              selectedValue?: string[],
               multiSelect?: boolean) {
                 super(name, ControlType.Select, required, placeHolder, errorMessage);
-                this.selectedValue = (selectedValue) ? selectedValue : '';
-                this.selectedText = (selectedText) ? selectedText : '';
+                this.selectedValue = (selectedValue) ? selectedValue : [''];
                 this.multiSelect = multiSelect;
                 this.options = options;
+  }
+}
+
+export class OptionControl extends BaseControl {
+  options: IOption[] = [];
+  title: string;
+
+  constructor(name: string,
+              title: string,
+              controlType: ControlType,
+              options: IOption[],
+              required: boolean,
+              errorMessage: string
+              ) {
+                super(name, controlType, required, undefined, errorMessage);
+                this.options = options;
+                this.title = title;
+            }
+}
+
+export class CheckboxControl extends OptionControl {
+
+  constructor(name: string,
+              title: string,
+              options: IOption[],
+              required: boolean,
+              errorMessage: string
+              ) {
+                super(name, title, ControlType.CheckBox, options, required, errorMessage);
+              }
+}
+
+
+export class RadioControl extends OptionControl {
+
+  constructor(name: string,
+              title: string,
+              options: IOption[],
+              required: boolean,
+              errorMessage: string
+              ) {
+                super(name, title, ControlType.RadioButton, options, required, errorMessage);
   }
 }

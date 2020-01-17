@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IBaseControl, ControlType, InputControl, SelectControl } from 'src/app/shared/models/form.control.model';
+import { IBaseControl, ControlType, InputControl,
+  SelectControl, CheckboxControl, RadioControl } from 'src/app/shared/models/form.control.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -24,7 +25,9 @@ export class FormComponent implements OnInit {
       return control.defaultValue;
    }
 
-   getSelectOptions(control: SelectControl) {
+   getSelectOptions(control: SelectControl | CheckboxControl | RadioControl) {
+    console.log(control.name);
+    console.log(control.options);
     return control.options;
  }
 
@@ -39,6 +42,11 @@ export class FormComponent implements OnInit {
 
   isMultiSelect(control: SelectControl) {
    return control.multiSelect;
+ }
+
+
+ getTitle(control: CheckboxControl | RadioControl) {
+   return control.title;
  }
 
  getControl(control: IBaseControl) {
