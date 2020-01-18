@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IBaseControl, ControlType, InputControl,
-  SelectControl, CheckboxControl, RadioControl } from 'src/app/shared/models/form.control.model';
+  SelectControl, CheckboxControl, RadioControl, OptionControl } from 'src/app/shared/models/form.control.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -10,9 +10,12 @@ import { FormGroup } from '@angular/forms';
 })
 
 export class FormComponent implements OnInit {
+  @Output() save: EventEmitter<IBaseControl[]> = new EventEmitter();
   controlType: typeof  ControlType = ControlType;
   @Input() controls: IBaseControl[] = [];
   @Input() fg: FormGroup;
+
+
 
   constructor() {
   }
@@ -22,12 +25,10 @@ export class FormComponent implements OnInit {
   }
 
    getInputValue(control: InputControl) {
-      return control.defaultValue;
+      return control.value;
    }
 
    getSelectOptions(control: SelectControl | CheckboxControl | RadioControl) {
-    console.log(control.name);
-    console.log(control.options);
     return control.options;
  }
 
@@ -64,6 +65,27 @@ export class FormComponent implements OnInit {
 
   return ctl;
 
+ }
+
+ formSubmit() {
+  console.log('called form submit');
+
+  this.controls.forEach(control => {
+
+    if (control.controlType === this.controlType.Input) {
+      (control as InputControl).value = this.fg.get(control.name).value;
+    } else if (control.controlType === this.controlType.Select) {
+      (control as SelectControl).selectedValue  = this.fg.get(control.name).value;
+    }  else if (control.controlType === this.controlType.CheckBox ||
+      control.controlType === this.controlType.RadioButton) {
+      (control as OptionControl).selectedValues = this.fg.get(control.name).value;
+      console.log(control.name);
+      console.log(this.fg.get(control.name).value);
+    }
+  });
+
+
+  this.save.emit(this.controls);
  }
 
 }

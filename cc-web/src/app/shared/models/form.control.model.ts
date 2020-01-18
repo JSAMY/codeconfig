@@ -65,7 +65,7 @@ export class BaseControl implements IBaseControl {
 
 export class InputControl extends  BaseControl {
   type: DataType;
-  defaultValue?: string;
+  value?: string;
   minLength?: number;
   maxLength?: number;
   required?: boolean;
@@ -75,7 +75,7 @@ export class InputControl extends  BaseControl {
 
   constructor(name: string,
               type?: DataType,
-              defaultValue?: string,
+              value?: string,
               required?: boolean,
               minLength?: number,
               maxLength?: number,
@@ -83,7 +83,7 @@ export class InputControl extends  BaseControl {
               errorMessage?: string,
               restriction?: Allow) {
                 super( name, ControlType.Input, required, placeHolder, errorMessage);
-                this.defaultValue = defaultValue;
+                this.value = value;
                 this.required = required;
                 this.minLength = minLength;
                 this.maxLength = maxLength;
@@ -116,7 +116,7 @@ export class SelectControl extends BaseControl {
 export class OptionControl extends BaseControl {
   options: IOption[] = [];
   title: string;
-
+  selectedValues: IOption[] = [];
   constructor(name: string,
               title: string,
               controlType: ControlType,

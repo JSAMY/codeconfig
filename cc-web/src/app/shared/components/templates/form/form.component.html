@@ -1,4 +1,4 @@
-<form   [formGroup]="fg">
+<form   [formGroup]="fg" >
       <div *ngFor="let control of controls; let i=index;">
 
           <div [ngSwitch]="control.controlType">
@@ -49,5 +49,6 @@
                           </mat-radio-group>
                       </section>
           </div>
-   </div>
+      </div>
+      <button mat-raised-button color="primary" (click)="formSubmit()" >Primary</button>
   </form>

@@ -15,7 +15,7 @@ export class Formservice   {
               if (control.controlType === ControlType.Input) {
                 let defaultValue = '';
 
-                defaultValue = (control as InputControl).defaultValue || '';
+                defaultValue = (control as InputControl).value || '';
 
                 if (control.required) {
                   group[control.name] = new FormControl(defaultValue, Validators.required);

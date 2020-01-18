@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IBaseControl, InputControl, DataType, Allow, SelectControl, IOption, CheckboxControl, RadioControl } from 'src/app/shared/models/form.control.model';
+import { IBaseControl, InputControl, DataType, Allow,
+  SelectControl, IOption, CheckboxControl, RadioControl } from 'src/app/shared/models/form.control.model';
 
 import { FormGroup } from '@angular/forms';
 import { Formservice } from 'src/app/shared/services/formservice/form.service';
@@ -64,6 +65,10 @@ export class HomeComponent implements OnInit {
 
 textChage(text: string) {
   console.log(text);
+}
+
+submit(controls: IBaseControl[]) {
+  console.log(controls);
 }
 
 }
