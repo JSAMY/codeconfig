@@ -46,3 +46,6 @@ https://jasonwatmore.com/post/2019/06/14/angular-8-reactive-forms-validation-exa
 
 #variable initi in html
 https://stackoverflow.com/questions/38582293/how-to-declare-a-variable-in-a-template-in-angular/43172992
+
+#checkbox
+http://marcusresell.com/2018/07/18/dynamic-checkbox-angular/

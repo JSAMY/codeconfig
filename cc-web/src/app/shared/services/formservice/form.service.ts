@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { IBaseControl, InputControl, ControlType, SelectControl, CheckboxControl, IOption, OptionControl } from '../../models/form.control.model';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IBaseControl, InputControl, ControlType, SelectControl,
+  OptionControl } from '../../models/form.control.model';
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 
 @Injectable()
 export class Formservice   {
@@ -37,19 +38,32 @@ export class Formservice   {
                     } else {
                       group[control.name] = new FormControl(selectControl.multiSelect ? selectedValues : selectedValue);
                     }
-              } else if (control.controlType === ControlType.CheckBox ||
-                control.controlType === ControlType.RadioButton ) {
+              } else if (control.controlType === ControlType.CheckBox ) {
 
                 const selectControl = (control as OptionControl);
                 let selectedValues: string[] = [];
                 selectedValues = selectControl.options.filter(opt => opt.selected).map(o => o.value);
+                // http://marcusresell.com/2018/07/18/dynamic-checkbox-angular/
 
-                if (control.required) {
-                  group[control.name] = new FormControl(selectedValues, Validators.required);
-                } else {
-                  group[control.name] = new FormControl(selectedValues);
-                }
-          }
+                const cbCtls = selectControl.options.map(opt => new FormControl(opt.selected));
+
+                group[control.name] = new FormArray(cbCtls);
+                // if (control.required) {
+                //   group[control.name] = new FormControl(selectedValues, Validators.required);
+                // } else {
+                //   group[control.name] = new FormControl(selectedValues);
+                // }
+          } else if (control.controlType === ControlType.RadioButton ) {
+
+            const selectControl = (control as OptionControl);
+            let selectedValues: string[] = [];
+            selectedValues = selectControl.options.filter(opt => opt.selected).map(o => o.value);
+            if (control.required) {
+              group[control.name] = new FormControl(selectedValues, Validators.required);
+            } else {
+              group[control.name] = new FormControl(selectedValues);
+            }
+      }
 
         }
     );
@@ -58,9 +72,6 @@ export class Formservice   {
     }
 
 
-    private inputControlInit(control: InputControl) {
-
-    }
 
 
 }

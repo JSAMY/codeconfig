@@ -30,11 +30,14 @@
                         </mat-select>
                     </mat-form-field>
 
-                    <section  *ngSwitchCase="controlType.CheckBox" >
+
+                     <section  *ngSwitchCase="controlType.CheckBox" >
                       <label> {{getTitle(control)}} </label>
-                      <p *ngFor="let opt of getSelectOptions(control)" [formArrayName]="control.name">
-                          <mat-checkbox  [checked]="opt.selected"  [value]="opt.value">{{opt.text}}</mat-checkbox>
-                          <!-- (change)="updateCheckBox(opt, $event.checked, control.name)" -->
+                      <p [formArrayName]="control.name" *ngFor="let opt of getSelectOptions(control);let i = index" >
+
+                        <mat-checkbox [formControlName]="i" [checked]="opt.selected"  [value]="opt.value">
+                          {{opt.text}}
+                          </mat-checkbox>
                       </p>
                     </section>
 

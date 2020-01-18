@@ -82,7 +82,6 @@ export class FormComponent implements OnInit {
 // }
 
  formSubmit() {
-  console.log('called form submit');
 
   this.controls.forEach(control => {
 
@@ -91,9 +90,9 @@ export class FormComponent implements OnInit {
     } else if (control.controlType === this.controlType.Select) {
       (control as SelectControl).selectedValue  = this.fg.get(control.name).value;
     }  else if (control.controlType === this.controlType.CheckBox ) {
-      (control as OptionControl).selectedValues = this.fg.get(control.name).value;
-      console.log(control.name);
-      console.log(this.fg.get(control.name).value);
+      (control as OptionControl).selectedValues = this.fg.get(control.name).value.
+      map((checked, index) => checked ? (control as OptionControl).options[index].value : null)
+      .filter(value => value !== null);
     } else if (control.controlType === this.controlType.RadioButton) {
       (control as OptionControl).selectedValues = this.fg.get(control.name).value;
     }
