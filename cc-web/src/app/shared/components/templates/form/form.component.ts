@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IBaseControl, ControlType, InputControl,
-  SelectControl, CheckboxControl, RadioControl, OptionControl } from 'src/app/shared/models/form.control.model';
-import { FormGroup } from '@angular/forms';
+  SelectControl, CheckboxControl, RadioControl, OptionControl, IOption } from 'src/app/shared/models/form.control.model';
+import { FormGroup, FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -67,6 +67,20 @@ export class FormComponent implements OnInit {
 
  }
 
+//  updateCheckBox(option: IOption, isChecked: boolean, key: string) {
+//     const chkArray = this.fg.get(key) as FormArray;
+//     console.log(chkArray);
+//     console.log(option);
+//     if (isChecked) {
+//         if (chkArray.controls.filter(x => x.value[0] === option.value)) {
+//           chkArray.push(new FormControl({ value: option.value, text: option.text  }));
+//         }
+//        } else {
+//           const idx = chkArray.controls.findIndex(x => x.value[0] === option.value);
+//           chkArray.removeAt(idx);
+//       }
+// }
+
  formSubmit() {
   console.log('called form submit');
 
@@ -76,11 +90,12 @@ export class FormComponent implements OnInit {
       (control as InputControl).value = this.fg.get(control.name).value;
     } else if (control.controlType === this.controlType.Select) {
       (control as SelectControl).selectedValue  = this.fg.get(control.name).value;
-    }  else if (control.controlType === this.controlType.CheckBox ||
-      control.controlType === this.controlType.RadioButton) {
+    }  else if (control.controlType === this.controlType.CheckBox ) {
       (control as OptionControl).selectedValues = this.fg.get(control.name).value;
       console.log(control.name);
       console.log(this.fg.get(control.name).value);
+    } else if (control.controlType === this.controlType.RadioButton) {
+      (control as OptionControl).selectedValues = this.fg.get(control.name).value;
     }
   });
 

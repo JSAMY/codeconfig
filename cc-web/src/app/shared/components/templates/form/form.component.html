@@ -6,7 +6,6 @@
                   <!-- Input Control section  -->
                   <mat-form-field *ngSwitchCase="controlType.Input">
                       <input matInput
-                      id="{{control.name}}"
                       [formControlName]="control.name"
                       placeholder="{{control.placeHolder}}"
                       value="{{getInputValue(control)}}"
@@ -22,7 +21,7 @@
                     <!-- select control section  -->
                     <mat-form-field *ngSwitchCase="controlType.Select">
                         <mat-label>{{control.placeHolder }} </mat-label>
-                        <mat-select id="{{control.name}}"
+                        <mat-select
                         [formControlName]="control.name"
                         multiple  = "{{isMultiSelect(control)}}" >
                           <mat-option *ngFor="let opt of getSelectOptions(control)" [value]="opt.value">
@@ -31,11 +30,11 @@
                         </mat-select>
                     </mat-form-field>
 
-
                     <section  *ngSwitchCase="controlType.CheckBox" >
                       <label> {{getTitle(control)}} </label>
                       <p *ngFor="let opt of getSelectOptions(control)" [formArrayName]="control.name">
                           <mat-checkbox  [checked]="opt.selected"  [value]="opt.value">{{opt.text}}</mat-checkbox>
+                          <!-- (change)="updateCheckBox(opt, $event.checked, control.name)" -->
                       </p>
                     </section>
 
