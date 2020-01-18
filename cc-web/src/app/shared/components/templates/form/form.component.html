@@ -34,11 +34,13 @@
                      <section  *ngSwitchCase="controlType.CheckBox" >
                       <label> {{getTitle(control)}} </label>
                       <p [formArrayName]="control.name" *ngFor="let opt of getSelectOptions(control);let i = index" >
-
                         <mat-checkbox [formControlName]="i" [checked]="opt.selected"  [value]="opt.value">
                           {{opt.text}}
                           </mat-checkbox>
                       </p>
+                      <p class="error" *ngIf="fg.controls[control.name].errors?.required">
+                          Checkbox is required, select atleast one value.
+                        </p>
                     </section>
 
                     <section  *ngSwitchCase="controlType.RadioButton" >

@@ -15,8 +15,6 @@ export class FormComponent implements OnInit {
   @Input() controls: IBaseControl[] = [];
   @Input() fg: FormGroup;
 
-
-
   constructor() {
   }
 
@@ -45,7 +43,6 @@ export class FormComponent implements OnInit {
    return control.multiSelect;
  }
 
-
  getTitle(control: CheckboxControl | RadioControl) {
    return control.title;
  }
@@ -66,20 +63,6 @@ export class FormComponent implements OnInit {
   return ctl;
 
  }
-
-//  updateCheckBox(option: IOption, isChecked: boolean, key: string) {
-//     const chkArray = this.fg.get(key) as FormArray;
-//     console.log(chkArray);
-//     console.log(option);
-//     if (isChecked) {
-//         if (chkArray.controls.filter(x => x.value[0] === option.value)) {
-//           chkArray.push(new FormControl({ value: option.value, text: option.text  }));
-//         }
-//        } else {
-//           const idx = chkArray.controls.findIndex(x => x.value[0] === option.value);
-//           chkArray.removeAt(idx);
-//       }
-// }
 
  formSubmit() {
 

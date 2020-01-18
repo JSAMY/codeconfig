@@ -43,16 +43,8 @@ export class Formservice   {
                 const selectControl = (control as OptionControl);
                 let selectedValues: string[] = [];
                 selectedValues = selectControl.options.filter(opt => opt.selected).map(o => o.value);
-                // http://marcusresell.com/2018/07/18/dynamic-checkbox-angular/
-
                 const cbCtls = selectControl.options.map(opt => new FormControl(opt.selected));
-
-                group[control.name] = new FormArray(cbCtls);
-                // if (control.required) {
-                //   group[control.name] = new FormControl(selectedValues, Validators.required);
-                // } else {
-                //   group[control.name] = new FormControl(selectedValues);
-                // }
+                group[control.name] = new FormArray(cbCtls, [Validators.required]);
           } else if (control.controlType === ControlType.RadioButton ) {
 
             const selectControl = (control as OptionControl);
