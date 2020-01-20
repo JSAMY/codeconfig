@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IBaseControl, InputControl, ControlType, SelectControl,
   OptionControl } from '../../models/form.control.model';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+import { CheckboxValidators } from '../../validators/required.validators';
 
 @Injectable()
 export class Formservice   {
@@ -43,8 +44,9 @@ export class Formservice   {
                 const selectControl = (control as OptionControl);
                 let selectedValues: string[] = [];
                 selectedValues = selectControl.options.filter(opt => opt.selected).map(o => o.value);
-                const cbCtls = selectControl.options.map(opt => new FormControl(opt.selected));
-                group[control.name] = new FormArray(cbCtls, [Validators.required]);
+                const cbCtls = selectControl.options.map(opt =>
+                  new FormControl(opt.selected));
+                group[control.name] = new FormArray(cbCtls,  [CheckboxValidators.minRequireOne]);
           } else if (control.controlType === ControlType.RadioButton ) {
 
             const selectControl = (control as OptionControl);
@@ -62,8 +64,4 @@ export class Formservice   {
 
       return new FormGroup(group);
     }
-
-
-
-
 }

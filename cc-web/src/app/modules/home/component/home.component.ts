@@ -46,15 +46,15 @@ export class HomeComponent implements OnInit {
 
     const checkOptions: IOption[] = [];
     checkOptions.push({value: 'check1',  text: 'check 1'});
-    checkOptions.push({value: 'check2',  text: 'check 2', selected: true});
+    checkOptions.push({value: 'check2',  text: 'check 2'});
     checkOptions.push({value: 'check3',  text: 'check 3'});
 
     const checkCtl: CheckboxControl   = new CheckboxControl('someOption', 'Check box test' ,
-                        checkOptions, true, 'option required');
+                        checkOptions, true, 'SomeOption CB required');
     this.controls.push(checkCtl);
 
-    const radioCtl: RadioControl   = new RadioControl('someRDOption', 'radio box test' ,
-                        checkOptions, true, 'Region required');
+    const radioCtl: RadioControl   = new RadioControl('someRDOption', 'Radio box test' ,
+                        checkOptions, true, 'SomeOption RD required');
     this.controls.push(radioCtl);
 
     this.fg = formservice.getFormGroup(this.controls);

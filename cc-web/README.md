@@ -49,3 +49,6 @@ https://stackoverflow.com/questions/38582293/how-to-declare-a-variable-in-a-temp
 
 #checkbox
 http://marcusresell.com/2018/07/18/dynamic-checkbox-angular/
+
+#Validators
+https://medium.com/ngx/3-ways-to-implement-conditional-validation-of-reactive-forms-c59ed6fc3325

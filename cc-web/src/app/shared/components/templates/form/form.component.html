@@ -38,9 +38,9 @@
                           {{opt.text}}
                           </mat-checkbox>
                       </p>
-                      <p class="error" *ngIf="fg.controls[control.name].errors?.required">
-                          Checkbox is required, select atleast one value.
-                        </p>
+                       <mat-error *ngIf="showError(control.name, 'minRequireOne')">
+                          {{control.errorMessage}}
+                      </mat-error>
                     </section>
 
                     <section  *ngSwitchCase="controlType.RadioButton" >
@@ -50,6 +50,9 @@
                              [value]="opt.value">
                                 {{opt.text}}
                             </mat-radio-button>
+                            <mat-error *ngIf="showError(control.name)">
+                                {{control.errorMessage}}
+                            </mat-error>
                           </mat-radio-group>
                       </section>
           </div>

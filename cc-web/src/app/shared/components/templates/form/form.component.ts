@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IBaseControl, ControlType, InputControl,
-  SelectControl, CheckboxControl, RadioControl, OptionControl, IOption } from 'src/app/shared/models/form.control.model';
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
+  SelectControl, CheckboxControl, RadioControl, OptionControl } from 'src/app/shared/models/form.control.model';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -10,23 +10,25 @@ import { FormGroup, FormArray, FormControl } from '@angular/forms';
 })
 
 export class FormComponent implements OnInit {
+  private formSubmitted: boolean;
+
   @Output() save: EventEmitter<IBaseControl[]> = new EventEmitter();
   controlType: typeof  ControlType = ControlType;
   @Input() controls: IBaseControl[] = [];
   @Input() fg: FormGroup;
 
   constructor() {
+    this.formSubmitted = false;
   }
 
   ngOnInit() {
-
   }
 
    getInputValue(control: InputControl) {
       return control.value;
    }
 
-   getSelectOptions(control: SelectControl | CheckboxControl | RadioControl) {
+   getSelectOptions(control: SelectControl | OptionControl) {
     return control.options;
  }
 
@@ -64,8 +66,13 @@ export class FormComponent implements OnInit {
 
  }
 
- formSubmit() {
+showError(ctnName: string, error: string = 'required' ) {
+  return ( this.fg.controls[ctnName].dirty || this.fg.controls[ctnName].touched || this.formSubmitted) &&
+    this.fg.controls[ctnName].hasError(error);
+}
 
+ formSubmit() {
+  this.formSubmitted = true;
   this.controls.forEach(control => {
 
     if (control.controlType === this.controlType.Input) {
