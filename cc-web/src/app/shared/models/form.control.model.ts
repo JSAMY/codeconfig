@@ -7,6 +7,7 @@ export enum ControlType {
   MultiSelect,
   RadioButton,
   CheckBox,
+  DynamicCollection,
   HTMLTag
 }
 
@@ -37,13 +38,32 @@ export interface IOption {
 
 export interface IBaseControl {
   name: string;
-  required?: boolean;
-  errorMessage?: string;
-  placeHolder?: string;
   controlType: ControlType;
 }
 
-export class BaseControl implements IBaseControl {
+export interface IControl extends IBaseControl {
+  required?: boolean;
+  errorMessage?: string;
+  placeHolder?: string;
+}
+
+export interface DynamicCollection extends IBaseControl {
+  title: string;
+  controls: IControl[];
+}
+
+export interface IControlCollection {
+  controls: IControl[];
+}
+
+export class ControlCollection implements IControlCollection {
+  controls: IControl[];
+  constructor() {
+    this.controls = [];
+  }
+}
+
+export class Control implements IControl {
   name: string;
   required?: boolean;
   errorMessage?: string;
@@ -63,7 +83,7 @@ export class BaseControl implements IBaseControl {
   }
 }
 
-export class InputControl extends  BaseControl {
+export class InputControl extends  Control {
   type: DataType;
   value?: string;
   minLength?: number;
@@ -94,7 +114,7 @@ export class InputControl extends  BaseControl {
   }
 }
 
-export class SelectControl extends BaseControl {
+export class SelectControl extends Control {
   selectedValue: string[] = [];
   multiSelect: boolean;
   options: IOption[] = [];
@@ -113,7 +133,7 @@ export class SelectControl extends BaseControl {
   }
 }
 
-export class OptionControl extends BaseControl {
+export class OptionControl extends Control {
   options: IOption[] = [];
   title: string;
   selectedValues: IOption[] = [];

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { IBaseControl, ControlType, InputControl,
-  SelectControl, CheckboxControl, RadioControl, OptionControl } from 'src/app/shared/models/form.control.model';
+import { IControl, ControlType, InputControl,
+  SelectControl, CheckboxControl, RadioControl, OptionControl, IControlCollection } from 'src/app/shared/models/form.control.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -12,9 +12,9 @@ import { FormGroup } from '@angular/forms';
 export class FormComponent implements OnInit {
   private formSubmitted: boolean;
 
-  @Output() save: EventEmitter<IBaseControl[]> = new EventEmitter();
+  @Output() save: EventEmitter<IControl[]> = new EventEmitter();
   controlType: typeof  ControlType = ControlType;
-  @Input() controls: IBaseControl[] = [];
+  @Input() controlCollection: IControlCollection;
   @Input() fg: FormGroup;
 
   constructor() {
@@ -49,8 +49,8 @@ export class FormComponent implements OnInit {
    return control.title;
  }
 
- getControl(control: IBaseControl) {
-  let ctl: IBaseControl;
+ getControl(control: IControl) {
+  let ctl: IControl;
   switch (control.controlType) {
     case ControlType.Input:
        console.log('input');
@@ -73,7 +73,7 @@ showError(ctnName: string, error: string = 'required' ) {
 
  formSubmit() {
   this.formSubmitted = true;
-  this.controls.forEach(control => {
+  this.controlCollection.controls.forEach(control => {
 
     if (control.controlType === this.controlType.Input) {
       (control as InputControl).value = this.fg.get(control.name).value;
@@ -89,7 +89,7 @@ showError(ctnName: string, error: string = 'required' ) {
   });
 
 
-  this.save.emit(this.controls);
+  this.save.emit(this.controlCollection.controls);
  }
 
 }

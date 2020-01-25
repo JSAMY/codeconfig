@@ -1,5 +1,5 @@
 <form   [formGroup]="fg" >
-      <div *ngFor="let control of controls; let i=index;">
+      <div *ngFor="let control of controlCollection.controls; let i=index;">
 
           <div [ngSwitch]="control.controlType">
 

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IBaseControl, InputControl, DataType, Allow,
+import { IControl, InputControl, DataType, Allow,
   SelectControl, IOption, CheckboxControl, RadioControl } from 'src/app/shared/models/form.control.model';
 
 import { FormGroup } from '@angular/forms';
 import { Formservice } from 'src/app/shared/services/formservice/form.service';
+import { BaseFormComponent } from 'src/app/shared/components/base/base.form.component';
 
 @Component({
   selector: 'app-home',
@@ -11,19 +12,17 @@ import { Formservice } from 'src/app/shared/services/formservice/form.service';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit {
-  fg: FormGroup;
-  controls: IBaseControl[] = [];
+export class HomeComponent extends BaseFormComponent implements OnInit {
 
     constructor(private formservice: Formservice) {
-
+    super();
     const firstName: InputControl = new InputControl('name',
     DataType.Text, 'John', true, 3, 25, 'First Name', 'Name required', Allow.Only_A_Z);
-    this.controls.push(firstName);
+    this.controlCollection.controls.push(firstName);
 
     const surame: InputControl = new InputControl('surName',
     DataType.Text, 'Adaikalasamy', true, 1, 25, 'Surname', 'Surname required', Allow.Only_A_Z);
-    this.controls.push(surame);
+    this.controlCollection.controls.push(surame);
 
     const businessOptions: IOption[] = [];
     businessOptions.push({value: 'IT_1',  text: 'Computer Hardware'});
@@ -31,7 +30,7 @@ export class HomeComponent implements OnInit {
     const businessType: SelectControl = new SelectControl('businessType',
                         businessOptions, true, 'Business', 'Business required', ['IT_2'], false );
 
-    this.controls.push(businessType);
+    this.controlCollection.controls.push(businessType);
 
 
     const regionOptions: IOption[] = [];
@@ -41,7 +40,7 @@ export class HomeComponent implements OnInit {
     const region: SelectControl   = new SelectControl('region',
                           regionOptions, true, 'Region', 'Region required', ['ind', 'uk'], true);
 
-    this.controls.push(region);
+    this.controlCollection.controls.push(region);
 
 
     const checkOptions: IOption[] = [];
@@ -51,13 +50,13 @@ export class HomeComponent implements OnInit {
 
     const checkCtl: CheckboxControl   = new CheckboxControl('someOption', 'Check box test' ,
                         checkOptions, true, 'SomeOption CB required');
-    this.controls.push(checkCtl);
+    this.controlCollection.controls.push(checkCtl);
 
     const radioCtl: RadioControl   = new RadioControl('someRDOption', 'Radio box test' ,
                         checkOptions, true, 'SomeOption RD required');
-    this.controls.push(radioCtl);
+    this.controlCollection.controls.push(radioCtl);
 
-    this.fg = formservice.getFormGroup(this.controls);
+    this.fg = formservice.getFormGroup(this.controlCollection);
   }
 
   ngOnInit() {
@@ -67,7 +66,7 @@ textChage(text: string) {
   console.log(text);
 }
 
-submit(controls: IBaseControl[]) {
+submit(controls: IControl[]) {
   console.log(controls);
 }
 

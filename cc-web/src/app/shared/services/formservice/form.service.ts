@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { IBaseControl, InputControl, ControlType, SelectControl,
-  OptionControl } from '../../models/form.control.model';
+import { IControl, InputControl, ControlType, SelectControl,
+  OptionControl,
+  IControlCollection} from '../../models/form.control.model';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { CheckboxValidators } from '../../validators/required.validators';
 
@@ -9,10 +10,10 @@ export class Formservice   {
 
   constructor() { }
 
-  getFormGroup(controls: IBaseControl[]): FormGroup {
+  getFormGroup(collection: IControlCollection): FormGroup {
       const group: any = {};
 
-      controls.forEach(control => {
+      collection.controls.forEach(control => {
 
               if (control.controlType === ControlType.Input) {
                 let defaultValue = '';
