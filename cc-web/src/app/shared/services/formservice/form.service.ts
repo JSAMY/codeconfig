@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IControl, InputControl, ControlType, SelectControl,
   OptionControl,
-  IControlCollection} from '../../models/form.control.model';
+  IFormConfig} from '../../models/form.control.model';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { CheckboxValidators } from '../../validators/required.validators';
 
@@ -10,7 +10,7 @@ export class Formservice   {
 
   constructor() { }
 
-  getFormGroup(collection: IControlCollection): FormGroup {
+  getFormGroup(collection: IFormConfig): FormGroup {
       const group: any = {};
 
       collection.controls.forEach(control => {

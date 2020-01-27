@@ -15,14 +15,14 @@ import { BaseFormComponent } from 'src/app/shared/components/base/base.form.comp
 export class HomeComponent extends BaseFormComponent implements OnInit {
 
     constructor(private formservice: Formservice) {
-    super();
+    super('Home - Uer Details Entry');
     const firstName: InputControl = new InputControl('name',
     DataType.Text, 'John', true, 3, 25, 'First Name', 'Name required', Allow.Only_A_Z);
-    this.controlCollection.controls.push(firstName);
+    this.formConfig.controls.push(firstName);
 
     const surame: InputControl = new InputControl('surName',
     DataType.Text, 'Adaikalasamy', true, 1, 25, 'Surname', 'Surname required', Allow.Only_A_Z);
-    this.controlCollection.controls.push(surame);
+    this.formConfig.controls.push(surame);
 
     const businessOptions: IOption[] = [];
     businessOptions.push({value: 'IT_1',  text: 'Computer Hardware'});
@@ -30,7 +30,7 @@ export class HomeComponent extends BaseFormComponent implements OnInit {
     const businessType: SelectControl = new SelectControl('businessType',
                         businessOptions, true, 'Business', 'Business required', ['IT_2'], false );
 
-    this.controlCollection.controls.push(businessType);
+    this.formConfig.controls.push(businessType);
 
 
     const regionOptions: IOption[] = [];
@@ -40,7 +40,7 @@ export class HomeComponent extends BaseFormComponent implements OnInit {
     const region: SelectControl   = new SelectControl('region',
                           regionOptions, true, 'Region', 'Region required', ['ind', 'uk'], true);
 
-    this.controlCollection.controls.push(region);
+    this.formConfig.controls.push(region);
 
 
     const checkOptions: IOption[] = [];
@@ -50,13 +50,13 @@ export class HomeComponent extends BaseFormComponent implements OnInit {
 
     const checkCtl: CheckboxControl   = new CheckboxControl('someOption', 'Check box test' ,
                         checkOptions, true, 'SomeOption CB required');
-    this.controlCollection.controls.push(checkCtl);
+    this.formConfig.controls.push(checkCtl);
 
     const radioCtl: RadioControl   = new RadioControl('someRDOption', 'Radio box test' ,
                         checkOptions, true, 'SomeOption RD required');
-    this.controlCollection.controls.push(radioCtl);
+    this.formConfig.controls.push(radioCtl);
 
-    this.fg = formservice.getFormGroup(this.controlCollection);
+    this.fg = formservice.getFormGroup(this.formConfig);
   }
 
   ngOnInit() {

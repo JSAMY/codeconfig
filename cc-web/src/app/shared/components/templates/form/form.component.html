@@ -1,7 +1,9 @@
 <form   [formGroup]="fg" >
-      <div *ngFor="let control of controlCollection.controls; let i=index;">
+      <div class="title">{{formConfig.formTitle}}</div>
 
-          <div [ngSwitch]="control.controlType">
+      <div *ngFor="let control of formConfig.controls; let i=index;">
+
+        <div [ngSwitch]="control.controlType">
 
                   <!-- Input Control section  -->
                   <mat-form-field *ngSwitchCase="controlType.Input">

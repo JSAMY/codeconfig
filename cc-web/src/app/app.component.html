@@ -1,23 +1,27 @@
-<header >
+<div class="container">
+  <header>
 
-  <div class="icon-section">
-    <img src="../assets/app-icon.ico">
-    <h2>
-        <span>{{title}} </span>
-    </h2>
-  </div>
+    <div class="icon-section">
+      <img src="../assets/app-icon.ico">
+      <!-- <h2>
+          <span>{{title}} </span>
+      </h2> -->
+    </div>
 
-  <app-menu></app-menu>
+  </header>
+  <aside>
+    <app-menu></app-menu>
+  </aside>
 
-</header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+  <footer>
+    footer
+  </footer>
+</div>
 
-<footer>
-  footer
-</footer>
 
 
 

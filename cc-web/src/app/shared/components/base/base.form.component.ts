@@ -1,14 +1,15 @@
 import { BaseComponent } from './base.component';
 import { FormGroup } from '@angular/forms';
-import { IControlCollection, ControlCollection } from '../../models/form.control.model';
+import { IFormConfig, FormConfig } from '../../models/form.control.model';
 
 export  class BaseFormComponent extends BaseComponent {
   fg: FormGroup;
-  controlCollection: IControlCollection = new ControlCollection();
+  formConfig: IFormConfig = new FormConfig();
 
-  constructor() {
+  constructor(title: string) {
     super();
-    this.controlCollection.controls = [];
+    this.formConfig.formTitle = title;
+    this.formConfig.controls = [];
   }
 }
 

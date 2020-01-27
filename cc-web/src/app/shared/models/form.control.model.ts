@@ -52,11 +52,13 @@ export interface DynamicCollection extends IBaseControl {
   controls: IControl[];
 }
 
-export interface IControlCollection {
+export interface IFormConfig {
+  formTitle: string;
   controls: IControl[];
 }
 
-export class ControlCollection implements IControlCollection {
+export class FormConfig implements IFormConfig {
+  formTitle: string;
   controls: IControl[];
   constructor() {
     this.controls = [];

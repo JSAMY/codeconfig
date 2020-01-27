@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IControl, ControlType, InputControl,
-  SelectControl, CheckboxControl, RadioControl, OptionControl, IControlCollection } from 'src/app/shared/models/form.control.model';
+  SelectControl, CheckboxControl, RadioControl, OptionControl, IFormConfig } from 'src/app/shared/models/form.control.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,7 @@ export class FormComponent implements OnInit {
 
   @Output() save: EventEmitter<IControl[]> = new EventEmitter();
   controlType: typeof  ControlType = ControlType;
-  @Input() controlCollection: IControlCollection;
+  @Input() formConfig: IFormConfig;
   @Input() fg: FormGroup;
 
   constructor() {
@@ -73,7 +73,7 @@ showError(ctnName: string, error: string = 'required' ) {
 
  formSubmit() {
   this.formSubmitted = true;
-  this.controlCollection.controls.forEach(control => {
+  this.formConfig.controls.forEach(control => {
 
     if (control.controlType === this.controlType.Input) {
       (control as InputControl).value = this.fg.get(control.name).value;
@@ -89,7 +89,7 @@ showError(ctnName: string, error: string = 'required' ) {
   });
 
 
-  this.save.emit(this.controlCollection.controls);
+  this.save.emit(this.formConfig.controls);
  }
 
 }

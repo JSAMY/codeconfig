@@ -1,5 +1,6 @@
 export class BaseComponent  {
-   title = '';
-  constructor() { }
+  title = '';
+  constructor() {
+   }
 }
 
