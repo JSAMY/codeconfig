@@ -18,4 +18,4 @@ import { Formservice } from './shared/services/formservice/form.service';
     Formservice
   ]
 })
-export class FormModule { }
+export class AppFormModule { }

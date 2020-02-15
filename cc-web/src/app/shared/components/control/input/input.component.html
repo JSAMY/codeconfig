@@ -1,0 +1,17 @@
+<form   [formGroup]="fg" >
+
+  <mat-form-field>
+    <input matInput
+    [formControlName]="control.name"
+    placeholder="{{control.placeHolder}}"
+    value="{{getInputValue(control)}}"
+    [attr.maxLength] = "getMaxLength(control)"
+    [attr.minLength] = "getMinLength(control)"
+    >
+     <mat-error *ngIf="hasError(control)">
+        {{control.errorMessage}}
+    </mat-error>
+  </mat-form-field>
+
+
+</form>

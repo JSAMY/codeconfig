@@ -1,0 +1,13 @@
+<form   [formGroup]="fg" >
+  <section>
+    <label> {{getTitle(control)}} </label>
+    <p [formArrayName]="control.name" *ngFor="let opt of getSelectOptions(control);let i = index" >
+      <mat-checkbox [formControlName]="i" [checked]="opt.selected"  [value]="opt.value">
+        {{opt.text}}
+        </mat-checkbox>
+    </p>
+     <mat-error *ngIf="hasError(control)">
+        {{control.errorMessage}}
+    </mat-error>
+  </section>
+</form>

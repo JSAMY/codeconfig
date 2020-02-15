@@ -1,0 +1,17 @@
+<form   [formGroup]="fg" >
+
+  <section  >
+    <label> {{getTitle(control)}} </label>
+    <mat-radio-group [formControlName]="control.name">
+        <mat-radio-button [checked]="opt.selected"  *ngFor="let opt of getSelectOptions(control)"
+         [value]="opt.value">
+            {{opt.text}}
+        </mat-radio-button>
+        <mat-error *ngIf="hasError(control)">
+            {{control.errorMessage}}
+        </mat-error>
+      </mat-radio-group>
+  </section>
+
+
+</form>

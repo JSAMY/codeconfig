@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IControl, InputControl, DataType, Allow,
   SelectControl, IOption, CheckboxControl, RadioControl } from 'src/app/shared/models/form.control.model';
 
-import { FormGroup } from '@angular/forms';
 import { Formservice } from 'src/app/shared/services/formservice/form.service';
 import { BaseFormComponent } from 'src/app/shared/components/base/base.form.component';
 

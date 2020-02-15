@@ -6,6 +6,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './shared/components/login/login.component';
 import { MenuComponent } from './shared/components/menu/menu.component';
 import { MenuBuilderComponent } from './shared/components/menu/menu-builder/menu-builder.component';
+import { InputComponent } from './shared/components/control/input/input.component';
+import { SelectComponent } from './shared/components/control/select/select.component';
+import { CheckboxComponent } from './shared/components/control/checkbox/checkbox.component';
+import { RadiobuttonComponent } from './shared/components/control/radiobutton/radiobutton.component';
+import { FormComponent } from './shared/components/control/form/form.component';
+import { AppMaterialModule } from './app-material.module';
+import { AppFormModule } from './app-form.module';
+
+
+const AppFormComponent = [
+  InputComponent,
+  SelectComponent,
+  CheckboxComponent,
+  RadiobuttonComponent,
+  FormComponent
+];
 
 @NgModule({
   declarations: [
@@ -13,11 +29,14 @@ import { MenuBuilderComponent } from './shared/components/menu/menu-builder/menu
     MenuComponent,
     LoginComponent,
     MenuBuilderComponent
+    //...AppFormComponent
   ],
+  exports: [AppMaterialModule], //, ...AppFormComponent
   imports: [
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppFormModule
   ],
   providers: [],
   bootstrap: [AppComponent]

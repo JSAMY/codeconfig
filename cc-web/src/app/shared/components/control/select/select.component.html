@@ -1,0 +1,15 @@
+<form   [formGroup]="fg" >
+  <mat-form-field >
+    <mat-label>{{control.placeHolder }} </mat-label>
+    <mat-select
+    [formControlName]="control.name"
+    multiple  = "{{isMultiSelect(control)}}" >
+      <mat-option
+        *ngFor="let opt of getSelectOptions(control)"
+       [value]="opt.value">
+        {{opt.text}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</form>
