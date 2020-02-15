@@ -29,9 +29,8 @@ const AppFormComponent = [
     MenuComponent,
     LoginComponent,
     MenuBuilderComponent
-    //...AppFormComponent
   ],
-  exports: [AppMaterialModule], //, ...AppFormComponent
+  exports: [AppMaterialModule],
   imports: [
     BrowserModule,
     AppRoutingModule,
