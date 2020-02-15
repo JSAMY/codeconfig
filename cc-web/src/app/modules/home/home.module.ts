@@ -11,7 +11,7 @@ import { CheckboxComponent } from 'src/app/shared/components/control/checkbox/ch
 import { RadiobuttonComponent } from 'src/app/shared/components/control/radiobutton/radiobutton.component';
 
 
-const modules = [
+const formControlComponents = [
   InputComponent,
   SelectComponent,
   CheckboxComponent,
@@ -25,6 +25,6 @@ const modules = [
     HomeRoutingModule,
     AppFormModule
   ],
-  declarations: [HomeComponent, ...modules]
+  declarations: [HomeComponent, ...formControlComponents]
 })
 export class HomeModule { }
