@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IControl, InputControl, ControlType, SelectControl,
-  OptionControl,
+import { IControlConfig, InputConfig, ControlType, SelectConfig,
+  OptionConfig,
   IFormConfig} from '../../models/form.control.model';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { CheckboxValidators } from '../../validators/required.validators';
@@ -18,7 +18,7 @@ export class Formservice   {
               if (control.controlType === ControlType.Input) {
                 let defaultValue = '';
 
-                defaultValue = (control as InputControl).value || '';
+                defaultValue = (control as InputConfig).value || '';
 
                 if (control.required) {
                   group[control.name] = new FormControl(defaultValue, Validators.required);
@@ -26,7 +26,7 @@ export class Formservice   {
                   group[control.name] = new FormControl(defaultValue);
                 }
               } else if (control.controlType === ControlType.Select) {
-                    const selectControl = (control as SelectControl);
+                    const selectControl = (control as SelectConfig);
                     let selectedValues: string[] = [];
                     let selectedValue = '';
                     selectedValues = selectControl.selectedValue  || [''];
@@ -42,7 +42,7 @@ export class Formservice   {
                     }
               } else if (control.controlType === ControlType.CheckBox ) {
 
-                const selectControl = (control as OptionControl);
+                const selectControl = (control as OptionConfig);
                 let selectedValues: string[] = [];
                 selectedValues = selectControl.options.filter(opt => opt.selected).map(o => o.value);
                 const cbCtls = selectControl.options.map(opt =>
@@ -50,7 +50,7 @@ export class Formservice   {
                 group[control.name] = new FormArray(cbCtls,  [CheckboxValidators.minRequireOne]);
           } else if (control.controlType === ControlType.RadioButton ) {
 
-            const selectControl = (control as OptionControl);
+            const selectControl = (control as OptionConfig);
             let selectedValues: string[] = [];
             selectedValues = selectControl.options.filter(opt => opt.selected).map(o => o.value);
             if (control.required) {

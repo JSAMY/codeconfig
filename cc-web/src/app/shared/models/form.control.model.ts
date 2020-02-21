@@ -1,5 +1,3 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
 export enum ControlType {
   Input = 1,
   Button,
@@ -36,36 +34,36 @@ export interface IOption {
   selected?: boolean;
 }
 
-export interface IBaseControl {
+export interface IBaseControlConfig {
   name: string;
   controlType: ControlType;
 }
 
-export interface IControl extends IBaseControl {
+export interface IControlConfig extends IBaseControlConfig {
   required?: boolean;
   errorMessage?: string;
   placeHolder?: string;
 }
 
-export interface DynamicCollection extends IBaseControl {
+export interface DynamicCollection extends IBaseControlConfig {
   title: string;
-  controls: IControl[];
+  controls: IControlConfig[];
 }
 
 export interface IFormConfig {
   formTitle: string;
-  controls: IControl[];
+  controls: IControlConfig[];
 }
 
 export class FormConfig implements IFormConfig {
   formTitle: string;
-  controls: IControl[];
+  controls: IControlConfig[];
   constructor() {
     this.controls = [];
   }
 }
 
-export class Control implements IControl {
+export class ControlConfig implements IControlConfig {
   name: string;
   required?: boolean;
   errorMessage?: string;
@@ -85,7 +83,7 @@ export class Control implements IControl {
   }
 }
 
-export class InputControl extends  Control {
+export class InputConfig extends  ControlConfig {
   type: DataType;
   value?: string;
   minLength?: number;
@@ -116,7 +114,7 @@ export class InputControl extends  Control {
   }
 }
 
-export class SelectControl extends Control {
+export class SelectConfig extends ControlConfig {
   selectedValue: string[] = [];
   multiSelect: boolean;
   options: IOption[] = [];
@@ -135,7 +133,7 @@ export class SelectControl extends Control {
   }
 }
 
-export class OptionControl extends Control {
+export class OptionConfig extends ControlConfig {
   options: IOption[] = [];
   title: string;
   selectedValues: IOption[] = [];
@@ -152,7 +150,7 @@ export class OptionControl extends Control {
             }
 }
 
-export class CheckboxControl extends OptionControl {
+export class CheckboxConfig extends OptionConfig {
 
   constructor(name: string,
               title: string,
@@ -165,7 +163,7 @@ export class CheckboxControl extends OptionControl {
 }
 
 
-export class RadioControl extends OptionControl {
+export class RadioConfig extends OptionConfig {
 
   constructor(name: string,
               title: string,

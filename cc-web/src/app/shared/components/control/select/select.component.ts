@@ -1,16 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { BaseControl } from '../../base/base.control';
-import { IControl } from 'src/app/shared/models/form.control.model';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { BaseControlComponent } from '../../base/base.control.component';
 
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss']
 })
-export class SelectComponent extends BaseControl  implements OnInit {
-  @Input() control: IControl;
-  @Input() fg: FormGroup;
+export class SelectComponent extends BaseControlComponent  implements OnInit {
 
   constructor() {
     super();

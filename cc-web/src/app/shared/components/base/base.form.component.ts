@@ -12,4 +12,3 @@ export  class BaseFormComponent extends BaseComponent {
     this.formConfig.controls = [];
   }
 }
-

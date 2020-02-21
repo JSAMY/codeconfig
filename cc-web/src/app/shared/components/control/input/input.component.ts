@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IControl } from 'src/app/shared/models/form.control.model';
-import { BaseControl } from '../../base/base.control';
-import { FormGroup } from '@angular/forms';
+import { BaseControlComponent } from '../../base/base.control.component';
 
 @Component({
   selector: 'app-input',
@@ -9,9 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./input.component.scss']
 })
 
-export class InputComponent extends BaseControl implements OnInit {
-  @Input() control: IControl;
-  @Input() fg: FormGroup;
+export class InputComponent extends BaseControlComponent implements OnInit {
 
   constructor() {
     super();

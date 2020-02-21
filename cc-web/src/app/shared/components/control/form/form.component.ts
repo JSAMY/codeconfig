@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { IControl, ControlType, InputControl,
-  SelectControl,   OptionControl, IFormConfig } from 'src/app/shared/models/form.control.model';
+import { IControlConfig, ControlType, InputConfig,
+  SelectConfig,   OptionConfig, IFormConfig } from 'src/app/shared/models/form.control.model';
 import { FormGroup } from '@angular/forms';
+import { BaseControlComponent } from '../../base/base.control.component';
 
 @Component({
   selector: 'app-form',
@@ -9,29 +10,29 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./form.component.scss']
 })
 
-export class FormComponent implements OnInit {
-  private formSubmitted: boolean;
-
-  @Output() save: EventEmitter<IControl[]> = new EventEmitter();
-  controlType: typeof  ControlType = ControlType;
+export class FormComponent extends BaseControlComponent implements OnInit {
+  @Output() save: EventEmitter<IControlConfig[]> = new EventEmitter();
   @Input() formConfig: IFormConfig;
-  @Input() fg: FormGroup;
+
+
+  controlType: typeof  ControlType = ControlType;
 
   constructor() {
+    super();
     this.formSubmitted = false;
   }
 
   ngOnInit() {
   }
 
- getControl(control: IControl) {
-  let ctl: IControl;
+ getControl(control: IControlConfig) {
+  let ctl: IControlConfig;
   switch (control.controlType) {
     case ControlType.Input:
-       ctl = (control as InputControl);
+       ctl = (control as InputConfig);
        break;
     case ControlType.Select:
-          ctl = (control as SelectControl);
+          ctl = (control as SelectConfig);
           break;
   }
 
@@ -49,15 +50,15 @@ showError(ctnName: string, error: string = 'required' ) {
   this.formConfig.controls.forEach(control => {
 
     if (control.controlType === this.controlType.Input) {
-      (control as InputControl).value = this.fg.get(control.name).value;
+      (control as InputConfig).value = this.fg.get(control.name).value;
     } else if (control.controlType === this.controlType.Select) {
-      (control as SelectControl).selectedValue  = this.fg.get(control.name).value;
+      (control as SelectConfig).selectedValue  = this.fg.get(control.name).value;
     }  else if (control.controlType === this.controlType.CheckBox ) {
-      (control as OptionControl).selectedValues = this.fg.get(control.name).value.
-      map((checked, index) => checked ? (control as OptionControl).options[index].value : null)
+      (control as OptionConfig).selectedValues = this.fg.get(control.name).value.
+      map((checked, index) => checked ? (control as OptionConfig).options[index].value : null)
       .filter(value => value !== null);
     } else if (control.controlType === this.controlType.RadioButton) {
-      (control as OptionControl).selectedValues = this.fg.get(control.name).value;
+      (control as OptionConfig).selectedValues = this.fg.get(control.name).value;
     }
   });
 
