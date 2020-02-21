@@ -34,8 +34,20 @@ getTitle(control: CheckboxConfig | RadioConfig) {
  return control.title;
 }
 
-hasError(control: IControlConfig): string {
-  return  control.errorMessage;
+hasError(control: IControlConfig): boolean {
+
+  if (this.fg.controls[control.name].dirty ||
+    this.fg.controls[control.name].touched ||
+    this.formSubmitted || this.fg.controls[control.name].errors) {
+      // const x = Object.values(this.fg.controls[control.name].errors);
+      // console.log(x);
+      if (this.fg.controls[control.name].hasError('required')) {
+        console.log('yes ...');
+        return true;
+      }
+  }
+
+  return false;
 }
 
 showError(ctnName: string, error: string = 'required' ) {
