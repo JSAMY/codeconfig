@@ -1,8 +1,9 @@
 <form   [formGroup]="fg" >
       <div class="title">{{formConfig.formTitle}}</div>
 
-      <div *ngFor="let control of formConfig.controlConfigs; let i=index;">
+      <div *ngFor="let control of formConfig.controlConfigs">
         <div [ngSwitch]="control.controlType">
+
                 <ng-container *ngSwitchCase="controlType.Input">
                   <app-input [control]="control" [fg]="fg" > </app-input>
                 </ng-container>
@@ -18,7 +19,8 @@
                 <ng-container *ngSwitchCase="controlType.RadioButton">
                   <app-radiobutton [control]="control" [fg]="fg" > </app-radiobutton>
                 </ng-container>
+
           </div>
       </div>
-      <button mat-raised-button color="primary" (click)="formSubmit()" >Primary</button>
+      <button mat-raised-button color="primary" [disabled]="!fg.valid" (click)="formSubmit()" >Primary</button>
   </form>
