@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from './app-material.module';
-import { Formservice } from './shared/services/formservice/form.service';
+import { Formservice } from './shared/services/form/form.service';
 
 @NgModule({
   exports: [

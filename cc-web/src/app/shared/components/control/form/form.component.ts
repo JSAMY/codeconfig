@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IControlConfig, ControlType, InputConfig,
-  SelectConfig,   OptionConfig, IFormConfig } from 'src/app/shared/models/form.control.model';
+  SelectConfig,   OptionConfig, IFormConfig } from 'src/app/shared/models/form.model';
 import { FormGroup } from '@angular/forms';
 import { BaseControlComponent } from '../../base/base.control.component';
 

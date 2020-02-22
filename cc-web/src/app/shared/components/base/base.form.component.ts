@@ -1,6 +1,6 @@
 import { BaseComponent } from './base.component';
 import { FormGroup } from '@angular/forms';
-import { IFormConfig, FormConfig } from '../../models/form.control.model';
+import { IFormConfig, FormConfig } from '../../models/form.model';
 
 export  class BaseFormComponent extends BaseComponent {
   fg: FormGroup;

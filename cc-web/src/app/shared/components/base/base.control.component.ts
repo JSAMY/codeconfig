@@ -1,6 +1,6 @@
 import { SelectConfig, InputConfig,
   OptionConfig, CheckboxConfig, RadioConfig,
-  IControlConfig, ControlType } from '../../models/form.control.model';
+  IControlConfig, ControlType } from '../../models/form.model';
 import { Input } from '@angular/core';
 import { FormGroup, ValidationErrors } from '@angular/forms';
 

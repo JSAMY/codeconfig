@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IControlConfig, InputConfig, DataType, Allow,
-  SelectConfig, IOption, CheckboxConfig, RadioConfig } from 'src/app/shared/models/form.control.model';
-import { Formservice } from 'src/app/shared/services/formservice/form.service';
+  SelectConfig, IOption, CheckboxConfig, RadioConfig } from 'src/app/shared/models/form.model';
+import { Formservice } from 'src/app/shared/services/form/form.service';
 import { BaseFormComponent } from 'src/app/shared/components/base/base.form.component';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-home',
