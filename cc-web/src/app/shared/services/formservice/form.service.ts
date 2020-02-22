@@ -13,7 +13,7 @@ export class Formservice   {
   getFormGroup(collection: IFormConfig): FormGroup {
       const group: any = {};
 
-      collection.controls.forEach(control => {
+      collection.controlConfigs.forEach(control => {
 
               if (control.controlType === ControlType.Input) {
                 let defaultValue = '';

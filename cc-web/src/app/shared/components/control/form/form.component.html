@@ -1,7 +1,7 @@
 <form   [formGroup]="fg" >
       <div class="title">{{formConfig.formTitle}}</div>
 
-      <div *ngFor="let control of formConfig.controls; let i=index;">
+      <div *ngFor="let control of formConfig.controlConfigs; let i=index;">
         <div [ngSwitch]="control.controlType">
                 <ng-container *ngSwitchCase="controlType.Input">
                   <app-input [control]="control" [fg]="fg" > </app-input>

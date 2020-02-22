@@ -9,6 +9,6 @@ export  class BaseFormComponent extends BaseComponent {
   constructor(title: string) {
     super();
     this.formConfig.formTitle = title;
-    this.formConfig.controls = [];
+    this.formConfig.controlConfigs = [];
   }
 }

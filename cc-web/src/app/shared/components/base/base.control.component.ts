@@ -2,7 +2,7 @@ import { SelectConfig, InputConfig,
   OptionConfig, CheckboxConfig, RadioConfig,
   IControlConfig, ControlType } from '../../models/form.control.model';
 import { Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ValidationErrors } from '@angular/forms';
 
 export class BaseControlComponent {
   protected formSubmitted: boolean;
@@ -34,17 +34,24 @@ getTitle(control: CheckboxConfig | RadioConfig) {
  return control.title;
 }
 
+private getFormValidationErrors(controlName: string) {
+  const controlErrors: ValidationErrors = this.fg.get(controlName).errors;
+  if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+          console.log('Key : ' + controlName + ', Error: ' + keyError + ',  value: ', controlErrors[keyError]);
+        });
+      }
+  }
+
 hasError(control: IControlConfig): boolean {
 
-  if (this.fg.controls[control.name].dirty ||
+  if ((this.fg.controls[control.name].dirty ||
     this.fg.controls[control.name].touched ||
-    this.formSubmitted || this.fg.controls[control.name].errors) {
-      // const x = Object.values(this.fg.controls[control.name].errors);
-      // console.log(x);
-      if (this.fg.controls[control.name].hasError('required')) {
-        console.log('yes ...');
-        return true;
-      }
+    this.formSubmitted) && this.fg.get(control.name).errors) {
+
+      this.getFormValidationErrors(control.name);
+
+      return true;
   }
 
   return false;

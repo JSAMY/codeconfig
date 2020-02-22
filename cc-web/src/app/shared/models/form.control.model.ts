@@ -47,19 +47,19 @@ export interface IControlConfig extends IBaseControlConfig {
 
 export interface DynamicCollection extends IBaseControlConfig {
   title: string;
-  controls: IControlConfig[];
+  controlConfigs: IControlConfig[];
 }
 
 export interface IFormConfig {
   formTitle: string;
-  controls: IControlConfig[];
+  controlConfigs: IControlConfig[];
 }
 
 export class FormConfig implements IFormConfig {
   formTitle: string;
-  controls: IControlConfig[];
+  controlConfigs: IControlConfig[];
   constructor() {
-    this.controls = [];
+    this.controlConfigs = [];
   }
 }
 

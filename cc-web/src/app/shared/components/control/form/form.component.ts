@@ -47,7 +47,7 @@ showError(ctnName: string, error: string = 'required' ) {
 
  formSubmit() {
   this.formSubmitted = true;
-  this.formConfig.controls.forEach(control => {
+  this.formConfig.controlConfigs.forEach(control => {
 
     if (control.controlType === this.controlType.Input) {
       (control as InputConfig).value = this.fg.get(control.name).value;
@@ -63,7 +63,7 @@ showError(ctnName: string, error: string = 'required' ) {
   });
 
 
-  this.save.emit(this.formConfig.controls);
+  this.save.emit(this.formConfig.controlConfigs);
  }
 
 }

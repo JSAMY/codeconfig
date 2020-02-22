@@ -39,11 +39,11 @@ export class HomeComponent extends BaseFormComponent implements OnInit {
   private setNameControls() {
     const firstName: InputConfig = new InputConfig('name',
     DataType.Text, 'John', true, 3, 25, 'First Name', 'Name required', Allow.Only_A_Z);
-    this.formConfig.controls.push(firstName);
+    this.formConfig.controlConfigs.push(firstName);
 
     const surame: InputConfig = new InputConfig('surName',
     DataType.Text, 'Adaikalasamy', true, 1, 25, 'Surname', 'Surname required', Allow.Only_A_Z);
-    this.formConfig.controls.push(surame);
+    this.formConfig.controlConfigs.push(surame);
   }
 
   private setBusinessTypeControl() {
@@ -53,7 +53,7 @@ export class HomeComponent extends BaseFormComponent implements OnInit {
     const businessType: SelectConfig = new SelectConfig('businessType',
                         businessOptions, true, 'Business', 'Business required', ['IT_2'], false );
 
-    this.formConfig.controls.push(businessType);
+    this.formConfig.controlConfigs.push(businessType);
   }
 
   private setRegionControl() {
@@ -64,7 +64,7 @@ export class HomeComponent extends BaseFormComponent implements OnInit {
     const region: SelectConfig   = new SelectConfig('region',
                           regionOptions, true, 'Region', 'Region required', ['ind', 'uk'], true);
 
-    this.formConfig.controls.push(region);
+    this.formConfig.controlConfigs.push(region);
   }
 
 
@@ -74,9 +74,9 @@ export class HomeComponent extends BaseFormComponent implements OnInit {
     checkOptions.push({value: 'check2',  text: 'check 2'});
     checkOptions.push({value: 'check3',  text: 'check 3'});
 
-    const checkCtl: CheckboxConfig   = new CheckboxConfig('someOption', 'Check box test' ,
+    const checkCtl: CheckboxConfig   = new CheckboxConfig('someOption', 'Check box Test' ,
                         checkOptions, true, 'SomeOption CB required');
-    this.formConfig.controls.push(checkCtl);
+    this.formConfig.controlConfigs.push(checkCtl);
   }
 
   private setRadioControl() {
@@ -87,7 +87,7 @@ export class HomeComponent extends BaseFormComponent implements OnInit {
 
     const radioCtl: RadioConfig   = new RadioConfig('someRDOption', 'Radio box test' ,
     checkOptions, true, 'SomeOption RD required');
-    this.formConfig.controls.push(radioCtl);
+    this.formConfig.controlConfigs.push(radioCtl);
   }
 
 }
